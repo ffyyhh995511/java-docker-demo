@@ -1,6 +1,7 @@
 package org.fyh.docker.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,12 +19,13 @@ import java.util.Map;
 @RequestMapping("test")
 public class TestController {
 
+    @Value("${spring.profiles.active}")
+    private String env;
+
     @RequestMapping("one")
     public Map<String, String> one(){
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("one", "1");
-        hashMap.put("two", "2");
-        hashMap.put("three", "3");
+        hashMap.put("env", env);
         hashMap.put("timestamp", String.valueOf(System.currentTimeMillis()));
         log.info("hashMap={}", hashMap);
         return hashMap;

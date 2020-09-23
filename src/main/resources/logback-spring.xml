@@ -40,5 +40,13 @@
         </root>
     </springProfile>
 
+    <springProfile name="dev">
+        <logger name="org.fyh.docker" level="debug"/>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="asyncFileAppender"/>
+        </root>
+    </springProfile>
+
 
 </configuration>
